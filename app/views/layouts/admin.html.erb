@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Netspire Control Panel</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= stylesheet_link_tag    "application", "bootstrap" %>
+  <%= javascript_include_tag "application", "jquery.tablesorter" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="topbar-wrapper" style="z-index: 5;">
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <h3><%= link_to('Netspire control panel', admin_dashboard_path) %></h3>
+          <ul>
+            <li><%= link_to('Accounts', admin_accounts_path) %></li>
+            <li><%= link_to('Transactions', admin_transactions_path) %></li>
+          </ul>
+
+          <ul class="nav">
+            <li class="menu">
+            <a href="#" class="menu">Settings</a>
+            <ul class="menu-dropdown">
+            </ul>
+            </li>
+          </ul>
+
+          <ul class="nav">
+            <li class="menu">
+
+            <a href="#" class="menu">Services</a>
+            <ul class="menu-dropdown">
+            </ul>
+            </li>
+          </ul>
+
+          <ul class="nav secondary-nav">
+            <li class="menu">
+
+            <a href="#" class="menu">Actions</a>
+
+            <ul class="menu-dropdown">
+              <li><a href="#">Action 1</a></li>
+              <li><a href="#">Action 2</a></li>
+              <li class="divider"></li>
+              <li><%= link_to("Sign out", destroy_admin_session_path) %></li>
+            </ul>
+            </li>
+          </ul>
+        </div> <!-- container -->
+      </div> <!-- fill -->
+    </div> <!-- topbar -->
+  </div> <!-- topbar-wrapper -->
+
+  <div class="container-fluid" style="padding-top: 70px;">
+    <div class="sidebar">
+      <%= yield :sidebar %>
+    </div>
+    
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
+
+</body>
+</html>
