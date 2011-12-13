@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   class BalanceTooLow < StandardError; end
 
-  attr_accessible :login, :password
+  attr_accessible :login, :password, :balance, :active
 
   has_many :service_links, :dependent => :destroy
   has_many :assigned_services, :through => :service_links

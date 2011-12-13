@@ -21,7 +21,7 @@
       <tr>
         <td><%= link_to account.login, edit_admin_account_path(account) %></td>
         <td><%= account.balance %></td>
-        <td><%= account.active %></td>
+        <td><%= tick_or_cross(account.active) %></td>
       </tr>
     <% end %>
   </tbody>

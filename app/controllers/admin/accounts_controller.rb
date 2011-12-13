@@ -10,6 +10,36 @@ class Admin::AccountsController < AdminController
     end
   end
 
+  def new
+    @account = Account.new
+  end
+
+  def edit
+    @account = Account.find(params[:id])
+  end
+
+  def create
+    @account = Account.new(params[:account])
+    @account.save!
+    flash[:notice] = "Account was created"
+    redirect_to(admin_accounts_path)
+  end
+
+  def update
+    @account = Account.find(params[:id])
+    @account.attributes = params[:account]
+    @account.save!
+    flash[:notice] = "Account was updated"
+    redirect_to(edit_admin_account_url(@account))
+  end
+
+  def destroy
+    @account = Account.find(params[:id])
+    @account.destroy
+    flash[:notice] = "Account was deleted"
+    redirect_to(admin_accounts_url)
+  end
+
   def deposit
     account = Account.find(params[:id])
     account.deposit(params[:amount])

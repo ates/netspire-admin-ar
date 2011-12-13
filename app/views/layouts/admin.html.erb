@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    "application", "bootstrap" %>
   <%= javascript_include_tag "application", "jquery.tablesorter" %>
   <%= csrf_meta_tags %>
+  <%= yield :html_head %>
 </head>
 <body>
 
@@ -54,8 +55,17 @@
     </div> <!-- topbar -->
   </div> <!-- topbar-wrapper -->
 
-  <div class="container-fluid" style="padding-top: 70px;">
-    <div class="sidebar">
+  <% flash.each do |key, value| %>
+    <strong>
+      <%= content_tag(:div, value,
+                      :style => "text-align: center; padding-top: 40px; position: absolute; width: 100%",
+                      :id => "flash_",
+                      :class => "alert-message #{key}") %>
+    </strong>
+  <% end %>
+
+  <div class="container-fluid" style="padding-top: 70px">
+    <div class="sidebar" style="top: 70px">
       <%= yield :sidebar %>
     </div>
     

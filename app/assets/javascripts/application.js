@@ -18,4 +18,7 @@ $(document).ready(function() {
     var $li = $(this).parent("li").toggleClass('open');
     return false;
   });
+
+  // fadeout flash messages
+  $("div#[id^='flash_']").fadeOut(3000);
 });
