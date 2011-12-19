@@ -1,5 +1,6 @@
 class Admin::AccountsController < AdminController
   respond_to :html, :json
+  load_and_authorize_resource
 
   rescue_from Account::BalanceTooLow, :with => :handle_balance_too_low
 

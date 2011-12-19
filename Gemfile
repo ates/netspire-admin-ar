@@ -5,6 +5,7 @@ gem 'rails', '3.1.3'
 # Extra gems
 gem 'pg'
 gem 'devise'
+gem 'cancan'
 gem 'will_paginate'
 
 # Gems used only for assets and not required
