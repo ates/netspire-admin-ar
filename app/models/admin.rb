@@ -3,13 +3,18 @@ class Admin < ActiveRecord::Base
          :token_authenticatable
 
   attr_accessible :login, :password, :email, :remember_me,
-    :admin_permissions_attributes
+    :admin_permissions_attributes, :active
 
   has_many :admin_permissions, :dependent => :destroy
   has_many :permissions, :through => :admin_permissions
 
   accepts_nested_attributes_for :admin_permissions, :allow_destroy => true,
     :reject_if => proc {|attrs| attrs['permission_id'] == '0'}
+
+  def self.find_for_authentication(conditions={})
+    conditions[:active] = true
+    super
+  end
 
   def not_assigned_perms
     all_perms = Permission.all
