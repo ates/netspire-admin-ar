@@ -8,6 +8,12 @@
 <%= form_for([:admin, @admin]) do |f| -%>
   <%= render "shared/error_messages", :target => @admin %>
   <%= render :partial => "form", :object => f %>
+  <div class="clearfix">
+    <%= f.label :authentication_token %>
+    <div class="input">
+      <span class="uneditable-input"><%= @admin.authentication_token %></span>
+    </div>
+  </div>
   <h3>Assigned permissions</h3>
   <div class="clearfix">
     <ul class="inputs-list">

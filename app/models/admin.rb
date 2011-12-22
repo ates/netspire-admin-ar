@@ -3,7 +3,7 @@ class Admin < ActiveRecord::Base
          :token_authenticatable
 
   attr_accessible :login, :password, :email, :remember_me,
-    :authentication_token, :admin_permissions_attributes
+    :admin_permissions_attributes
 
   has_many :admin_permissions, :dependent => :destroy
   has_many :permissions, :through => :admin_permissions
