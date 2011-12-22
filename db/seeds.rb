@@ -3,24 +3,29 @@ admin = Admin.create!(:login => 'admin', :password => 'secret',
 admin.reset_authentication_token!
 
 # Permissions
-p1 = Permission.create!(:subject_class => 'Account',
-                        :action => 'index',
-                        :name => 'View accounts')
-p2 = Permission.create!(:subject_class => 'Account',
-                        :action => 'edit',
-                        :name => 'Edit account')
-p3 = Permission.create!(:subject_class => 'Account',
-                        :action => 'destroy',
-                        :name => 'Delete account')
-p4 = Permission.create!(:subject_class => 'Transaction',
-                        :action => 'index',
-                        :name => 'View transactions')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'index',
+                   :name => 'List of the accounts')
+Permission.create!(:subject_class => 'Account',
+                    :action => 'edit',
+                    :name => 'Edit account')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'destroy',
+                   :name => 'Delete account')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'update',
+                   :name => 'Update account')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'create',
+                   :name => 'Create account')
+Permission.create!(:subject_class => 'Transaction',
+                   :action => 'index',
+                   :name => 'List of the transactions')
 
 # Assign permission to admin account
-admin.admin_permissions.create!(:permission => p1)
-admin.admin_permissions.create!(:permission => p2)
-admin.admin_permissions.create!(:permission => p3)
-admin.admin_permissions.create!(:permission => p4)
+Permission.all.each do |p|
+  admin.admin_permissions.create!(:permission => p)
+end
 
 account1 = Account.create!(:login => 'joel', :password => 'secret')
 account1.deposit(20)

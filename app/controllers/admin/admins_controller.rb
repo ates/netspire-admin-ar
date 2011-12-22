@@ -16,6 +16,7 @@ class Admin::AdminsController < AdminController
   def create
     @admin = Admin.new(params[:admin])
     @admin.save!
+    @admin.reset_authentication_token!
     flash[:notice] = "Admin account was created"
     redirect_to(admin_admins_path)
   end
