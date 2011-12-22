@@ -1,0 +1,14 @@
+<% content_for :sidebar do %>
+  <h5><%= link_to 'List of admin accounts', admin_admins_path %></h5>
+<% end %>
+
+<h1>New admin account</h1>
+
+<%= form_for([:admin, @admin]) do |f| -%>
+  <%= render "shared/error_messages", :target => @admin %>
+  <%= render :partial => "form", :object => f %>
+  <div class="actions">
+    <%= f.submit 'Create an account', :class => "btn primary" %>
+    <%= f.submit 'Reset', :type => "reset", :class => "btn" %>
+  </div>
+<% end -%>

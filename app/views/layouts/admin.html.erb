@@ -43,7 +43,7 @@
             <a href="#" class="menu">Actions</a>
 
             <ul class="menu-dropdown">
-              <li><a href="#">Action 1</a></li>
+              <li><%= link_to('Profile', admin_profile_path) %></li>
               <li><a href="#">Action 2</a></li>
               <li class="divider"></li>
               <li><%= link_to("Sign out", destroy_admin_session_path) %></li>

@@ -10,6 +10,10 @@ NetspireAdmin::Application.routes.draw do
   namespace :admin do
     match '/dashboard', :to => 'dashboard#index', :as => :dashboard
 
+    match '/profile', :to => 'admins#edit', :as => :profile
+
+    resources :admins
+
     resources :accounts do
       member do
         put :deposit

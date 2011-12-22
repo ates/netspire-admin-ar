@@ -30,11 +30,12 @@ ActiveRecord::Schema.define(:version => 20111219201108) do
   end
 
   create_table "admins", :force => true do |t|
-    t.string   "login",                                               :null => false
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "login",                                                 :null => false
+    t.string   "email",                               :default => "",   :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",   :null => false
     t.string   "authentication_token"
     t.datetime "remember_created_at"
+    t.boolean  "active",                              :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

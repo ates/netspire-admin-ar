@@ -1,0 +1,33 @@
+<% content_for :sidebar do %>
+  <h5><%= link_to 'Create admin account', new_admin_admin_path %></h5>
+  <h5><%= link_to 'List of admin accounts', admin_admins_path %></h5>
+<% end %>
+
+<h1>Editing profile</h1>
+
+<%= form_for([:admin, @admin]) do |f| -%>
+  <%= render "shared/error_messages", :target => @admin %>
+  <%= render :partial => "form", :object => f %>
+  <h3>Assigned permissions</h3>
+  <div class="clearfix">
+    <ul class="inputs-list">
+      <%= f.fields_for :admin_permissions do |fields| %>
+        <li>
+          <%= fields.check_box :_destroy, { :checked => true }, false, true %>
+          <span><%= fields.object.permission.name %></span>
+        </li>
+      <% end %>
+      <%= f.fields_for :admin_permissions, @admin.not_assigned_perms do |fields| %>
+        <li>
+          <%= fields.check_box :permission_id, { :checked => false }, fields.object.permission.id %>
+          <span><%= fields.object.permission.name %></span>
+      <% end %>
+    </ul>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Update account', :class => "btn primary" %>
+    <%= link_to("Delete account", admin_admin_path(@admin),
+                "data-method" => "delete",
+                "data-confirm" => "Are you sure to delete this record?") %>
+  </div>
+<% end -%>

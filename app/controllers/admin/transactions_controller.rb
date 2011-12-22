@@ -1,5 +1,6 @@
 class Admin::TransactionsController < AdminController
   respond_to :html
+  load_and_authorize_resource
 
   def index
     @transanctions = scope.paginate(:page => params[:page])

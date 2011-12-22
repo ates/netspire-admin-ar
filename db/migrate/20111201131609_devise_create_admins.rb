@@ -5,6 +5,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration
       t.database_authenticatable :null => false, :encryptor => :sha1
       t.token_authenticatable
       t.rememberable
+      t.boolean :active, :null => false, :default => true
       t.timestamps
     end
 

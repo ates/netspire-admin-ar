@@ -2,6 +2,26 @@ admin = Admin.create!(:login => 'admin', :password => 'secret',
                       :email => 'admin@domain.com')
 admin.reset_authentication_token!
 
+# Permissions
+p1 = Permission.create!(:subject_class => 'Account',
+                        :action => 'index',
+                        :name => 'View accounts')
+p2 = Permission.create!(:subject_class => 'Account',
+                        :action => 'edit',
+                        :name => 'Edit account')
+p3 = Permission.create!(:subject_class => 'Account',
+                        :action => 'destroy',
+                        :name => 'Delete account')
+p4 = Permission.create!(:subject_class => 'Transaction',
+                        :action => 'index',
+                        :name => 'View transactions')
+
+# Assign permission to admin account
+admin.admin_permissions.create!(:permission => p1)
+admin.admin_permissions.create!(:permission => p2)
+admin.admin_permissions.create!(:permission => p3)
+admin.admin_permissions.create!(:permission => p4)
+
 account1 = Account.create!(:login => 'joel', :password => 'secret')
 account1.deposit(20)
 account1.deposit(30)

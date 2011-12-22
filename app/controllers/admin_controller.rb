@@ -3,6 +3,8 @@ class AdminController < ApplicationController
 
   layout 'admin'
 
+  protected
+
   def current_user
     current_admin
   end
