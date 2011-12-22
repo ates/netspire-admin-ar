@@ -25,6 +25,11 @@
 </head>
 <body>
 
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, :class => "alert-message error",
+                  :style => "text-align: center; padding-top: 20px;") %>
+<% end %>
+
 <div id="main">
   <div id="form">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
