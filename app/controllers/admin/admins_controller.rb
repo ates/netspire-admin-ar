@@ -1,5 +1,6 @@
 class Admin::AdminsController < AdminController
   respond_to :html
+  load_and_authorize_resource
 
   def index
     @admins = Admin.paginate(:page => params[:page])
