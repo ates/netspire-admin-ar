@@ -1,0 +1,21 @@
+<%= raw Seer::init_visualization -%>
+
+<div id="chart"></div>
+
+<%= raw Seer::visualize(
+      @domains,
+      :as => :column_chart,
+      :in_element =>'chart',
+      :series => {:series_label => 'title', :data_method => 'quantity'},
+      :chart_options => {
+        :height => 500,
+        :width => 200 * @domains.size,
+        :is_3_d => true,
+        :legend => 'none',
+        :colors => "[{color:'#990000', darker:'#660000'}]",
+        :title => "Accounts Quantities",
+        :title_x => 'Accounts',
+        :title_y => 'Quantities'
+      }
+    )
+ -%>
