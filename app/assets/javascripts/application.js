@@ -19,6 +19,28 @@ $(document).ready(function() {
     return false;
   });
 
+  // Display ajax progress
+  $('#spinner').ajaxSpinner();
+
   // fadeout flash messages
   $("div#[id^='flash_']").fadeOut(3000);
 });
+
+/*
+ * Element acts as Ajax progress.
+ */
+(function($) {
+    $.fn.extend({
+        ajaxSpinner: function() {
+            return this.each(function() {
+                var element = $(this);
+                element.ajaxStart(function() {
+                    $(this).css('position', 'fixed').show();
+                });
+                element.ajaxStop(function() {
+                    $(this).hide();
+                });
+            });
+        }
+    });
+})(jQuery);
