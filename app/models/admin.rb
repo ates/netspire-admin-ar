@@ -2,7 +2,7 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :timeoutable,
          :token_authenticatable
 
-  attr_accessible :domain, :login, :password, :email, :remember_me,
+  attr_accessible :domain_id, :login, :password, :email, :remember_me,
     :admin_permissions_attributes, :active
 
   has_many :admin_permissions, :dependent => :destroy
