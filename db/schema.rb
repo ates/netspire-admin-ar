@@ -11,9 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219201108) do
+ActiveRecord::Schema.define(:version => 20111223143332) do
 
   create_table "accounts", :force => true do |t|
+    t.integer  "domain_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_name"
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20111219201108) do
   end
 
   create_table "admins", :force => true do |t|
+    t.integer  "domain_id"
     t.string   "login",                                                 :null => false
     t.string   "email",                               :default => "",   :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",   :null => false
@@ -49,6 +51,15 @@ ActiveRecord::Schema.define(:version => 20111219201108) do
   create_table "assigned_services", :force => true do |t|
     t.integer  "service_id", :null => false
     t.integer  "plan_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "domains", :force => true do |t|
+    t.string   "name",                          :null => false
+    t.string   "title",                         :null => false
+    t.text     "description"
+    t.boolean  "active",      :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

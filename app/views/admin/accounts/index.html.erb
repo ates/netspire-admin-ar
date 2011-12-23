@@ -13,6 +13,7 @@
     <tr>
       <th class="yellow header headerSortDown">Login</th>
       <th class="red header">Full name</th>
+      <th class="orange header">Domain</th>
       <th class="blue header">Balance</th>
       <th class="green header">Active</th>
     </tr>
@@ -22,6 +23,7 @@
       <tr>
         <td><%= link_to account.login, edit_admin_account_path(account) %></td>
         <td><%= account.full_name %></td>
+        <td><%= account.domain.title %></td>
         <td><%= account.balance %></td>
         <td><%= tick_or_cross(account.active) %></td>
       </tr>

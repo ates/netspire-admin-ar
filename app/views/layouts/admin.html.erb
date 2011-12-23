@@ -17,7 +17,7 @@
     <div class="topbar">
       <div class="fill">
         <div class="container-fluid">
-          <h3><%= link_to('Netspire control panel', admin_dashboard_path) %></h3>
+          <h3><%= link_to("#{current_admin.domain.title}", admin_dashboard_path) %></h3>
           <ul>
             <li><%= link_to('Accounts', admin_accounts_path) %></li>
             <li><%= link_to('Transactions', admin_transactions_path) %></li>

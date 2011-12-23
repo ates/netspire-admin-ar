@@ -2,11 +2,13 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :timeoutable,
          :token_authenticatable
 
-  attr_accessible :login, :password, :email, :remember_me,
+  attr_accessible :domain, :login, :password, :email, :remember_me,
     :admin_permissions_attributes, :active
 
   has_many :admin_permissions, :dependent => :destroy
   has_many :permissions, :through => :admin_permissions
+
+  belongs_to :domain
 
   accepts_nested_attributes_for :admin_permissions, :allow_destroy => true,
     :reject_if => proc {|attrs| attrs['permission_id'] == '0'}

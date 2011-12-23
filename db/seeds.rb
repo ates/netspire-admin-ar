@@ -1,4 +1,7 @@
-admin = Admin.create!(:login => 'admin', :password => 'secret',
+domain = Domain.create!(:name => 'fiction', :title => 'FictionISP')
+
+admin = Admin.create!(:domain => domain,
+                      :login => 'admin', :password => 'secret',
                       :email => 'admin@domain.com')
 admin.reset_authentication_token!
 
@@ -47,14 +50,16 @@ Permission.all.each do |p|
   admin.admin_permissions.create!(:permission => p)
 end
 
-account1 = Account.create!(:first_name => 'Joel',
+account1 = Account.create!(:domain => domain,
+                           :first_name => 'Joel',
                            :last_name => 'Albers',
                            :login => 'joel', :password => 'secret')
 account1.deposit(20)
 account1.deposit(30)
 account1.withdraw(15)
 
-account2 = Account.create!(:first_name => 'Patricia',
+account2 = Account.create!(:domain => domain,
+                           :first_name => 'Patricia',
                            :last_name => 'Slogan',
                            :login => 'patricia', :password => 'secret')
 account2.deposit(10)

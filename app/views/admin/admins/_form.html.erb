@@ -1,4 +1,11 @@
 <div class="clearfix">
+  <%= form.label :domain %>
+  <div class="input">
+    <%= form.collection_select :domain_id, Domain.all, :id, :title, {} %>
+  </div>
+</div>
+
+<div class="clearfix">
   <%= form.label :login %>
   <div class="input">
     <%= form.text_field :login, :size => 30 %>
@@ -8,7 +15,7 @@
 <div class="clearfix">
   <%= form.label :email %>
   <div class="input">
-    <%= form.text_field :email, :size => 30 %>
+    <%= form.email_field :email, :size => 30 %>
   </div>
 </div>
 
@@ -17,7 +24,8 @@
   <div class="input">
     <%= form.text_field :password, :size => 30,
       :id => "password_field",
-      :disabled => true %>
+      :disabled => true,
+      :value => "Encrypted" %>
     <%= link_to "Reset by new one", "#", :id => "password_enable" %>
   </div>
 </div>

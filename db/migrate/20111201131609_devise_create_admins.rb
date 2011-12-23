@@ -1,6 +1,7 @@
 class DeviseCreateAdmins < ActiveRecord::Migration
   def change
     create_table(:admins) do |t|
+      t.references :domain
       t.string :login, :null => false
       t.database_authenticatable :null => false, :encryptor => :sha1
       t.token_authenticatable

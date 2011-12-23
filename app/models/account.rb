@@ -1,12 +1,14 @@
 class Account < ActiveRecord::Base
   class BalanceTooLow < StandardError; end
 
-  attr_accessible :first_name, :last_name, :middle_name,
+  attr_accessible :domain, :first_name, :last_name, :middle_name,
     :login, :password, :balance, :active
 
   has_many :service_links, :dependent => :destroy
   has_many :assigned_services, :through => :service_links
   has_many :transactions, :dependent => :delete_all
+
+  belongs_to :domain
 
   scope :recent, order("accounts.created_at DESC")
   scope :active, where(:active => true)
