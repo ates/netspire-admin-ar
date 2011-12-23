@@ -12,10 +12,10 @@ class Admin < ActiveRecord::Base
     :reject_if => proc {|attrs| attrs['permission_id'] == '0'}
 
   validates :login, :presence => true, :uniqueness => true,
-    :length => { :in => 3..32 }, :login => true
+    :length => { :in => 3..32 }
   validates :password, :presence => true, :length => { :minimum => 6 },
     :if => :password_required?
-  validates :email, :uniqueness => { :allow_blank => true }, :email => true
+  validates :email, :uniqueness => { :allow_blank => true }
 
   def self.find_for_authentication(conditions={})
     conditions[:active] = true
