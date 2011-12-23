@@ -47,12 +47,16 @@ Permission.all.each do |p|
   admin.admin_permissions.create!(:permission => p)
 end
 
-account1 = Account.create!(:login => 'joel', :password => 'secret')
+account1 = Account.create!(:first_name => 'Joel',
+                           :last_name => 'Albers',
+                           :login => 'joel', :password => 'secret')
 account1.deposit(20)
 account1.deposit(30)
 account1.withdraw(15)
 
-account2 = Account.create!(:login => 'patricia', :password => 'secret')
+account2 = Account.create!(:first_name => 'Patricia',
+                           :last_name => 'Slogan',
+                           :login => 'patricia', :password => 'secret')
 account2.deposit(10)
 account2.deposit(20)
 account2.withdraw(15)

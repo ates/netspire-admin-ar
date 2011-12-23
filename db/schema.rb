@@ -14,10 +14,13 @@
 ActiveRecord::Schema.define(:version => 20111219201108) do
 
   create_table "accounts", :force => true do |t|
-    t.string   "login",                                                        :null => false
-    t.string   "password",                                                     :null => false
-    t.boolean  "active",                                     :default => true, :null => false
-    t.decimal  "balance",    :precision => 20, :scale => 10, :default => 0.0
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.string   "login",                                                         :null => false
+    t.string   "password",                                                      :null => false
+    t.boolean  "active",                                      :default => true, :null => false
+    t.decimal  "balance",     :precision => 20, :scale => 10, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

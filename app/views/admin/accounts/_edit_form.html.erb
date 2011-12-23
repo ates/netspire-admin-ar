@@ -1,4 +1,25 @@
 <div class="clearfix">
+  <%= edit_form.label :first_name %>
+  <div class="input">
+    <%= edit_form.text_field :first_name, :size => 30 %>
+  </div>
+</div>
+
+<div class="clearfix">
+  <%= edit_form.label :last_name %>
+  <div class="input">
+    <%= edit_form.text_field :last_name, :size => 30 %>
+  </div>
+</div>
+
+<div class="clearfix">
+  <%= edit_form.label :middle_name %>
+  <div class="input">
+    <%= edit_form.text_field :middle_name, :size => 30 %>
+  </div>
+</div>
+
+<div class="clearfix">
   <%= edit_form.label :login %>
   <div class="input">
     <%= edit_form.text_field :login, :size => 30 %>

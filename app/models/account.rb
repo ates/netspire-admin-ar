@@ -1,7 +1,8 @@
 class Account < ActiveRecord::Base
   class BalanceTooLow < StandardError; end
 
-  attr_accessible :login, :password, :balance, :active
+  attr_accessible :first_name, :last_name, :middle_name,
+    :login, :password, :balance, :active
 
   has_many :service_links, :dependent => :destroy
   has_many :assigned_services, :through => :service_links
@@ -16,8 +17,7 @@ class Account < ActiveRecord::Base
   validates :active, :inclusion => { :in => [true, false] }
 
   def full_name
-    # TODO: Compose full name properly
-    login
+    "#{first_name} #{last_name}"
   end
 
   def lock
