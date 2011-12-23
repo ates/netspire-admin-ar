@@ -13,7 +13,7 @@
   <div class="topbar-wrapper" style="z-index: 5;">
     <div class="topbar">
       <div class="fill">
-        <div class="container">
+        <div class="container-fluid">
           <h3><%= link_to('Netspire control panel', admin_dashboard_path) %></h3>
           <ul>
             <li><%= link_to('Accounts', admin_accounts_path) %></li>
@@ -40,17 +40,15 @@
           <ul class="nav secondary-nav">
             <li class="menu">
 
-            <a href="#" class="menu">Actions</a>
-
+            <%= link_to "Logged in as #{current_admin.login}", '#', :class => 'menu' %>
             <ul class="menu-dropdown">
               <li><%= link_to('Profile', admin_profile_path) %></li>
-              <li><a href="#">Action 2</a></li>
               <li class="divider"></li>
               <li><%= link_to("Sign out", destroy_admin_session_path) %></li>
             </ul>
             </li>
           </ul>
-        </div> <!-- container -->
+        </div> <!-- container-fluid -->
       </div> <!-- fill -->
     </div> <!-- topbar -->
   </div> <!-- topbar-wrapper -->
@@ -73,6 +71,10 @@
       <%= yield %>
     </div>
   </div>
+
+  <footer class="footer">
+    Netspire Billing System. This is early alpha software.
+  </footer>
 
 </body>
 </html>

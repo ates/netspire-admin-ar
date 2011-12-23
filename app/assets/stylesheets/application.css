@@ -5,3 +5,17 @@
  *= require_self
  *= require_tree . 
 */
+
+.footer {
+    clear: both
+    border-top: 1px solid #e6e6e6;
+    text-align: center;
+    line-height: 13px;
+    padding: 0;
+    padding-bottom: 5px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    color: #049cdb;
+}
