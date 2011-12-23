@@ -11,6 +11,12 @@ class Admin < ActiveRecord::Base
   accepts_nested_attributes_for :admin_permissions, :allow_destroy => true,
     :reject_if => proc {|attrs| attrs['permission_id'] == '0'}
 
+  validates :login, :presence => true, :uniqueness => true,
+    :length => { :in => 3..32 }, :login => true
+  validates :password, :presence => true, :length => { :minimum => 6 },
+    :if => :password_required?
+  validates :email, :uniqueness => { :allow_blank => true }, :email => true
+
   def self.find_for_authentication(conditions={})
     conditions[:active] = true
     super
@@ -25,5 +31,11 @@ class Admin < ActiveRecord::Base
       @not_assigned_perms << self.admin_permissions.build(:permission => p)
     end
     @not_assigned_perms
+  end
+
+  private
+
+  def password_required?
+    new_record? || !password.nil? || !password_confirmation.nil?
   end
 end

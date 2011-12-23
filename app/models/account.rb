@@ -15,6 +15,11 @@ class Account < ActiveRecord::Base
   validates :password, :presence => true, :length => { :minimum => 6 }
   validates :active, :inclusion => { :in => [true, false] }
 
+  def full_name
+    # TODO: Compose full name properly
+    login
+  end
+
   def lock
     transaction do
       lock!
