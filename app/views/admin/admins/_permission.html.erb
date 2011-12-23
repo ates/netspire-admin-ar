@@ -1,0 +1,20 @@
+<h3>Assigned/Available permissions</h3>
+<div class="clearfix">
+  <ul class="inputs-list">
+    <%= permission.fields_for :admin_permissions do |fields| %>
+      <li>
+      <%= fields.check_box :_destroy, { :checked => true }, false, true %>
+      <span title="<%= fields.object.permission.description %>">
+        <%= fields.object.permission.name %>
+      </span>
+      </li>
+    <% end %>
+    <%= permission.fields_for :admin_permissions, @admin.not_assigned_perms do |fields| %>
+      <li>
+      <%= fields.check_box :permission_id, { :checked => false }, fields.object.permission.id %>
+      <span title="<%= fields.object.permission.description %>">
+        <%= fields.object.permission.name %>
+      </span>
+    <% end %>
+  </ul>
+</div>

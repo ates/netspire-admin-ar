@@ -3,33 +3,24 @@
   <h5><%= link_to 'List of admin accounts', admin_admins_path %></h5>
 <% end %>
 
+<% content_for :html_head do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#password_enable').click(function() {
+        $('#password_field').removeAttr("disabled");
+      });
+    });
+  </script>
+<% end %>
+
 <h1>Editing profile</h1>
 
 <%= form_for([:admin, @admin]) do |f| -%>
   <%= render "shared/error_messages", :target => @admin %>
-  <%= render :partial => "form", :object => f %>
-  <div class="clearfix">
-    <%= f.label :authentication_token %>
-    <div class="input">
-      <span class="uneditable-input"><%= @admin.authentication_token %></span>
-    </div>
-  </div>
-  <h3>Assigned/Available permissions</h3>
-  <div class="clearfix">
-    <ul class="inputs-list">
-      <%= f.fields_for :admin_permissions do |fields| %>
-        <li>
-          <%= fields.check_box :_destroy, { :checked => true }, false, true %>
-          <span><%= fields.object.permission.name %></span>
-        </li>
-      <% end %>
-      <%= f.fields_for :admin_permissions, @admin.not_assigned_perms do |fields| %>
-        <li>
-          <%= fields.check_box :permission_id, { :checked => false }, fields.object.permission.id %>
-          <span><%= fields.object.permission.name %></span>
-      <% end %>
-    </ul>
-  </div>
+  <%= render :partial => "form", :locals => { :admin => @admin },
+    :object => f %>
+  <%= render :partial => "permission", :locals => { :admin => @admin },
+    :object => f %>
   <div class="actions">
     <%= f.submit 'Update account', :class => "btn primary" %>
     <%= link_to("Delete account", admin_admin_path(@admin),

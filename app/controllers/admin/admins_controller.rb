@@ -43,7 +43,7 @@ class Admin::AdminsController < AdminController
     respond_with(@admin) do |format|
       format.html do
         action = "new"
-        action = "edit" unless @account.new_record?
+        action = "edit" unless @admin.new_record?
         render :action => action
       end
     end
