@@ -26,7 +26,7 @@ Running
 <pre>
     $ bundle exec rake db:setup
 </pre>
-* Run application
+* Run application development mode
 <pre>
     $ bundle exec rails server
 </pre>
