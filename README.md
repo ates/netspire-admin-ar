@@ -26,13 +26,20 @@ Running
 <pre>
     $ bundle exec rake db:setup
 </pre>
-* Run application development mode
+* Run application in development mode
 <pre>
     $ bundle exec rails server
 </pre>
 
 Rake tasks
 ----------
+
+* To see all available tasks
+<pre>
+    $ bundle exec rake -T netspire
+    rake netspire:admins:create   # Create new Admin account (options: LOGIN=login, PASSWORD=password, DOMAIN=name).
+    rake netspire:domains:create  # Create new domain (options: NAME=name, TITLE=title).
+</pre>
 
 * Create new domain
 <pre>
@@ -43,3 +50,13 @@ Rake tasks
     $ bundle exec rake netspire:admins:create LOGIN=admin PASSWORD=secret DOMAIN=myisp
     Authentication token is uxsrYB4bSBgDeZ65jmaq
 </pre>
+
+Deploying
+---------
+
+* Before deploying in production need to precompile CSS and JS files:
+<pre>
+    $ bundle exec rake assets:precompile
+</pre>
+
+* Configure front-end HTTP server to serve static files from /public/assest
