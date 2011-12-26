@@ -33,7 +33,13 @@
 <div class="clearfix">
   <%= form.label :authentication_token %>
   <div class="input">
-    <span class="uneditable-input"><%= @admin.authentication_token %></span>
+    <span id="auth_token" class="uneditable-input">
+      <%= @admin.authentication_token %>
+    </span>
+    <%= link_to "Reset authentication token",
+      reset_auth_token_admin_admin_path(@admin),
+      :remote => true,
+      "data-confirm" => "Are you sure to reset authentication token?" %>
   </div>
 </div>
 

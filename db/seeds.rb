@@ -43,6 +43,9 @@ Permission.create!(:subject_class => 'Admin',
 Permission.create!(:subject_class => 'Admin',
                    :action => 'index',
                    :name => 'List of the administrative accounts')
+Permission.create!(:subject_class => 'Admin',
+                   :action => 'reset_auth_token',
+                   :name => 'Reset authentication token')
 
 # Assign permission to admin account
 Permission.all.each do |p|

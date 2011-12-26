@@ -12,7 +12,11 @@ NetspireAdmin::Application.routes.draw do
 
     match '/profile', :to => 'admins#edit', :as => :profile
 
-    resources :admins
+    resources :admins do
+      member do
+        get :reset_auth_token
+      end
+    end
 
     resources :accounts do
       member do

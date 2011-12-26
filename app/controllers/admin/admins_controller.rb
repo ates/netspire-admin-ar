@@ -1,5 +1,5 @@
 class Admin::AdminsController < AdminController
-  respond_to :html
+  respond_to :html, :js
   load_and_authorize_resource
 
   def index
@@ -36,6 +36,13 @@ class Admin::AdminsController < AdminController
     flash[:notice] = "Admin account was deleted"
     redirect_to(admin_admins_url)
   end
+
+  def reset_auth_token
+    @admin = Admin.find(params[:id])
+    @admin.reset_authentication_token!
+    respond_with(@admin)
+  end
+
 
   protected
 
