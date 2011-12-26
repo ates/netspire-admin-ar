@@ -30,3 +30,16 @@ Running
 <pre>
     $ bundle exec rails server
 </pre>
+
+Rake tasks
+----------
+
+* Create new domain
+<pre>
+    $ bundle exec rake netspire:domains:create NAME=myisp TITLE=MyISP
+</pre>
+* Create new admin account with all permissions and assinged to specific domain
+<pre>
+    $ bundle exec rake netspire:admins:create LOGIN=admin PASSWORD=secret DOMAIN=myisp
+    Authentication token is uxsrYB4bSBgDeZ65jmaq
+</pre>
