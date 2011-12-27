@@ -60,11 +60,18 @@
 </div>
 
 <div id="balance-form" title="Deposit/Withdraw balance">
-  <p>All form fields are required.</p>
   <form>
-    <label for="amount">Amount</label>
-    <input type="text" name="amount" id="amount" class="text ui-widget-content ui-corner-all" />
-    <label for="reason">Reason</label>
-    <input type="text" name="comment" id="comment" value="" class="text ui-widget-content ui-corner-all" />
-  </form>
+    <div class="clearfix">
+      <label for="amount">Amount</label>
+      <div class="input">
+        <input type="text" name="amount" id="amount"/>
+      </div>
+    </div>
+    <div class="clearfix">
+      <label for="reason">Comment</label>
+      <div class="input">
+        <input type="text" name="comment" id="comment"/>
+      </div>
+    </div>
+    </form>
 </div>
