@@ -1,7 +1,8 @@
-<script >
+<script type="text/javascript">
   $(function() {
     $("table#transactionsTable").tablesorter({ sortList: [[0,0]] });
   });
+  $('.pagination a').attr('data-remote', 'true');
 </script>
 
 <table class="zebra-striped" id="transactionsTable">
@@ -25,8 +26,4 @@
   </tbody>
 </table>
 
-<script type="text/javascript">
-  $('.pagination a').attr('data-remote', 'true');
-</script>
-
-<%= will_paginate(@transanctions) %>
+<%= will_paginate @transanctions %>
