@@ -28,5 +28,6 @@ NetspireAdmin::Application.routes.draw do
     end
 
     resources :transactions
+    resources :assigned_services
   end
 end
