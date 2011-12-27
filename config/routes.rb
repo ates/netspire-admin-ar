@@ -22,6 +22,8 @@ NetspireAdmin::Application.routes.draw do
       member do
         put :deposit
         put :withdraw
+        get :lock
+        get :unlock
       end
     end
 

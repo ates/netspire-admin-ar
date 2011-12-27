@@ -61,6 +61,18 @@ class Admin::AccountsController < AdminController
     end
   end
 
+  def lock
+    account = Account.find(params[:id])
+    account.lock
+    render :json => { :ok => "locked" }
+  end
+
+  def unlock
+    account = Account.find(params[:id])
+    account.unlock
+    render :json => { :ok => "unlocked" }
+  end
+
   protected
 
   def handle_balance_too_low

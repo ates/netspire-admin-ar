@@ -27,6 +27,12 @@ Permission.create!(:subject_class => 'Account',
 Permission.create!(:subject_class => 'Account',
                    :action => 'withdraw',
                    :name => 'Withdraw balance')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'lock',
+                   :name => 'Lock account')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'unlock',
+                   :name => 'Unlock account')
 
 # Transaction
 Permission.create!(:subject_class => 'Transaction',
