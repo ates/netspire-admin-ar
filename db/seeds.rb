@@ -117,7 +117,26 @@ service2.options.create!(:name => "bw_limit_out",
                          :required => true,
                          :value_type => Option::Type::NUMERIC)
 
-ps1 = plan1.assigned_services.create!(:service => service2)
+m1 = AssignedService::ChargeMode::START
+c1 = BillingCycle.create!(:name => "Monthly since 1st day of month",
+                          :cycle_type => BillingCycle::Type::MONTH, :length => 1)
+
+ps1 = plan1.assigned_services.create!(:charge_mode => m1, :periodic_fee => 1800,
+                                      :setup_fee => 5000,
+                                      :service => service1, :billing_cycle => c1)
+ps2 = plan1.assigned_services.create!(:charge_mode => m1, :periodic_fee => 900,
+                                      :setup_fee => 3000,
+                                      :service => service2, :billing_cycle => c1)
+ps3 = plan2.assigned_services.create!(:charge_mode => m1, :periodic_fee => 900,
+                                      :setup_fee => 2500,
+                                      :service => service1, :billing_cycle => c1)
+ps4 = plan2.assigned_services.create!(:charge_mode => m1, :periodic_fee => 450,
+                                      :setup_fee => 1500,
+                                      :service => service2, :billing_cycle => c1)
 
 # Add ServiceLink to Account
 account1.service_links.create!(:assigned_service => ps1)
+account1.service_links.create!(:assigned_service => ps2)
+
+account2.service_links.create!(:assigned_service => ps3)
+account2.service_links.create!(:assigned_service => ps4)

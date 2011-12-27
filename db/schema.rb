@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111223143332) do
+ActiveRecord::Schema.define(:version => 20111227160009) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "domain_id"
@@ -49,8 +49,35 @@ ActiveRecord::Schema.define(:version => 20111223143332) do
   add_index "admins", ["login"], :name => "index_admins_on_login", :unique => true
 
   create_table "assigned_services", :force => true do |t|
-    t.integer  "service_id", :null => false
-    t.integer  "plan_id",    :null => false
+    t.integer  "service_id",                                                       :null => false
+    t.integer  "plan_id",                                                          :null => false
+    t.integer  "billing_cycle_id",                                                 :null => false
+    t.decimal  "periodic_fee",     :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "setup_fee",        :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.integer  "charge_mode",                                                      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "billing_cycles", :force => true do |t|
+    t.string   "name",                               :null => false
+    t.integer  "cycle_type",                         :null => false
+    t.boolean  "smooth",           :default => true, :null => false
+    t.integer  "unit"
+    t.integer  "length",           :default => 1,    :null => false
+    t.integer  "canonical_length", :default => 1,    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "billing_periods", :force => true do |t|
+    t.integer  "next_id"
+    t.integer  "billing_cycle_id",                    :null => false
+    t.datetime "start_at",                            :null => false
+    t.datetime "expires_at",                          :null => false
+    t.boolean  "expired",          :default => false, :null => false
+    t.integer  "canonical_length",                    :null => false
+    t.integer  "iteration",        :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
