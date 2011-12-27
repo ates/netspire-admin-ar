@@ -43,20 +43,28 @@ class Admin::AccountsController < AdminController
 
   def deposit
     account = Account.find(params[:id])
-    account.deposit(params[:amount])
-    render :json => account.balance
+    begin
+      account.deposit(params[:amount], params[:comment])
+      render :json => account.balance
+    rescue => e
+      render :json => { :error => e.message }, :status => 500
+    end
   end
 
   def withdraw
     account = Account.find(params[:id])
-    account.withdraw(params[:amount])
-    render :json => account.balance
+    begin
+      account.withdraw(params[:amount], params[:comment])
+      render :json => account.balance
+    rescue => e
+      render :json => { :error => e.message }, :status => 500
+    end
   end
 
   protected
 
   def handle_balance_too_low
-    render :json => { :error => "Balance too low" }
+    render :json => { :error => "Balance too low" }, :status => 500
   end
 
   def handle_record_invalid
@@ -68,5 +76,4 @@ class Admin::AccountsController < AdminController
       end
     end
   end
-
 end

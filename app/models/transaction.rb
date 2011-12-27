@@ -5,7 +5,7 @@ class Transaction < ActiveRecord::Base
     option :TRANSFER, 2
   end
 
-  attr_accessible :amount, :code
+  attr_accessible :amount, :code, :comment
 
   belongs_to :account
 

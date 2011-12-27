@@ -21,6 +21,12 @@ Permission.create!(:subject_class => 'Account',
 Permission.create!(:subject_class => 'Account',
                    :action => 'create',
                    :name => 'Create account')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'deposit',
+                   :name => 'Deposit balance')
+Permission.create!(:subject_class => 'Account',
+                   :action => 'withdraw',
+                   :name => 'Withdraw balance')
 
 # Transaction
 Permission.create!(:subject_class => 'Transaction',

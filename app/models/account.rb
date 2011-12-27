@@ -38,25 +38,27 @@ class Account < ActiveRecord::Base
     end
   end
 
-  def deposit(amount)
+  def deposit(amount, comment = "")
     assert_valid_amount(amount)
 
     transaction do
       lock!
       transactions.create!(:amount => amount,
+                           :comment => comment,
                            :code => Transaction::Type::DEPOSIT)
       self.balance += amount
       save!
     end
   end
 
-  def withdraw(amount)
+  def withdraw(amount, comment = "")
     assert_valid_amount(amount)
 
     transaction do
       lock!
       transactions.create!(:amount => (- amount),
-                          :code => Transaction::Type::WITHDRAW)
+                           :comment => comment,
+                           :code => Transaction::Type::WITHDRAW)
       raise BalanceTooLow if balance < amount
       self.balance -= amount
       save!

@@ -46,7 +46,8 @@
 <div class="clearfix">
   <%= edit_form.label :balance %>
   <div class="input">
-    <%= edit_form.text_field :balance, :size => 10 %>
+    <%= edit_form.text_field :balance, :size => 10, :disabled => true %>
+    <%= link_to "Deposit/Withdraw", "#", :id => "change_balance" %>
   </div>
 </div>
 
@@ -56,4 +57,14 @@
     <%= edit_form.check_box :active %>
     <span>Yes, serve this account</span>
   </div>
+</div>
+
+<div id="balance-form" title="Deposit/Withdraw balance">
+  <p>All form fields are required.</p>
+  <form>
+    <label for="amount">Amount</label>
+    <input type="text" name="amount" id="amount" class="text ui-widget-content ui-corner-all" />
+    <label for="reason">Reason</label>
+    <input type="text" name="comment" id="comment" value="" class="text ui-widget-content ui-corner-all" />
+  </form>
 </div>

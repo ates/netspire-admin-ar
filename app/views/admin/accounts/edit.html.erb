@@ -13,7 +13,63 @@
         $('#password_enable').click(function() {
           $('#password_field').removeAttr("disabled");
         });
+
+   $(function() {
+     var amount = $("#amount"),
+         comment_msg = $("#comment");
+
+     $("#balance-form").dialog({
+       autoOpen: false,
+       height: 300,
+       width: 350,
+       resizable: false,
+       modal: true,
+       buttons: {
+         "Deposit": function() {
+            $.ajax({
+              url: "/admin/accounts/<%= @account.id %>/deposit",
+              type: 'PUT',
+              contentType: "application/json",
+              data: JSON.stringify({amount: parseFloat(amount.val()), comment: comment_msg.val()}),
+              dataType: 'json',
+              success: function(data) {
+                $('#account_balance').val(data);
+              },
+              error: function(xhr, ajaxOptions, thrownError) {
+                var obj = jQuery.parseJSON(xhr.responseText);
+                alert(obj.error);
+              }
+            });
+            $(this).dialog("close");
+         },
+         "Withdraw": function() {
+           $.ajax({
+             url: "/admin/accounts/<%= @account.id %>/withdraw",
+             type: 'PUT',
+             contentType: "application/json",
+             data: JSON.stringify({amount: parseFloat(amount.val()), comment: comment_msg.val()}),
+             dataType: 'json',
+             success: function(data) {
+               $('#account_balance').val(data);
+             },
+             error: function(xhr, ajaxOptions, thrownError) {
+               var obj = jQuery.parseJSON(xhr.responseText);
+               alert(obj.error);
+             }
+          });
+          $(this).dialog("close");
+         },
+        Cancel: function() {
+          $(this).dialog("close");
+        }
+      }
     });
+
+     $("#change_balance").click(function() {
+       $("#balance-form").dialog("open");
+     });
+  });
+  });
   </script>
 <% end %>
 

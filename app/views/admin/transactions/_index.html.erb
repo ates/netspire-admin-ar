@@ -11,6 +11,7 @@
       <th class="yellow header headerSortDown">From/To</th>
       <th class="blue header">Type</th>
       <th class="green header">Amount</th>
+      <th class="red header">Comment</th>
       <th class="green header">Created</th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= link_to t.account.login, polymorphic_path([:edit, :admin, t.account]) %></td>
         <td><%= transaction_type(t) %></td>
         <td><%= t.amount %></td>
+        <td><%= t.comment %></td>
         <td><%= localized_time(t.created_at) %></td>
       </tr>
     <% end %>
