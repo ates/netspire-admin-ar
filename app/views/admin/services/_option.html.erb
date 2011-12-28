@@ -15,7 +15,7 @@
 <div class="clearfix">
   <%= form.label :value_type %>
   <div class="input">
-    <%= form.text_field :value_type %>
+    <%= form.select :value_type, Option::Type.options.to_a %>
   </div>
 </div>
 

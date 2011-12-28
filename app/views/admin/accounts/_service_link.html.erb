@@ -36,3 +36,14 @@
         <span class="help-inline">Indicates that service is available for this account.</span>
     </div>
 </div>
+
+<div style="float: right">
+  <% unless form.object.new_record? %>
+    <table>
+      <tbody>
+        <%= properties_fields(form) %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+<div style="clear: left"></div>
