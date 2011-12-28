@@ -20,6 +20,7 @@
           <h3><%= link_to("#{current_admin.domain.title}", admin_dashboard_path) %></h3>
           <ul>
             <li><%= link_to('Accounts', admin_accounts_path) %></li>
+            <li><%= link_to('Transactions', admin_transactions_path) %></li>
           </ul>
 
           <ul class="nav">
@@ -27,7 +28,7 @@
             <a href="#" class="menu">Billing</a>
             <ul class="menu-dropdown">
               <li><%= link_to('Plans', admin_plans_path) %></li>
-              <li><%= link_to('Transactions', admin_transactions_path) %></li>
+              <li><%= link_to('Services', admin_services_path) %></li>
               <li><%= link_to('Billing periods', admin_billing_periods_path) %></li>
               <li><%= link_to('Billing cycles', admin_billing_cycles_path) %></li>
             </ul>
@@ -37,15 +38,6 @@
           <ul class="nav">
             <li class="menu">
             <a href="#" class="menu">Settings</a>
-            <ul class="menu-dropdown">
-            </ul>
-            </li>
-          </ul>
-
-          <ul class="nav">
-            <li class="menu">
-
-            <a href="#" class="menu">Services</a>
             <ul class="menu-dropdown">
             </ul>
             </li>

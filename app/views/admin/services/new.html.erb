@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+    <h5><%= link_to 'List of services', admin_services_path %></h5>
+<% end %>
+
+<h1>New Service</h1>
+
+<%= form_for([:admin, @service]) do |f| -%>
+    <%= render :partial => "form", :object => f %>
+    <div class="actions">
+        <%= f.submit "Create", :class => "btn primary" %>
+    </div>
+<% end -%>

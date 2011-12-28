@@ -1,12 +1,12 @@
 <% content_for :html_head do %>
     <script type="text/javascript">
         $(document).ready(function() {
-            var toggle_elements = $("#services tr.expandable");
+            var toggle_elements = $("#options tr.expandable");
             $.each(toggle_elements, function() {
               $(this).next().toggle();
             });
             // Expand/collapse AssignedService row
-            $("#services tr.expandable > th").live("click", function(e) {
+            $("#options tr.expandable > th").live("click", function(e) {
                 var next = $(this).parent().next();
                 next.toggle();
                 if (next.is(":visible")) {
@@ -17,15 +17,15 @@
             });
 
             // Appends new AssignedService row
-            $('#new_service').click(function() {
-                var tbody = $("#services");
-                var row = $.templates.get("services");
+            $('#new_option').click(function() {
+                var tbody = $("#options");
+                var row = $.templates.get("options");
                 row.appendTo(tbody).show();
                 return false;
             });
 
             // Remove existing Service row
-            $('#services a.remove').live("click", function() {
+            $('#options a.remove').live("click", function() {
                 var row = $(this).closest('tr');
                 row.next().remove();
                 row.remove();
@@ -34,7 +34,7 @@
 
             // Set correct indexes of form fields
             $("form").submit(function() {
-                var rows = $("#services tr");
+                var rows = $("#options tr");
                 $.each(rows, function() {
                     var index = rows.index($(this));
                         $.each($(this).find("input, select"), function() {
@@ -47,34 +47,34 @@
     </script>
 <% end %>
 
-<h1>Editing plan</h1>
+<h1>Editing service</h1>
 
-<%= form_for([:admin, @plan]) do |f| -%>
+<%= form_for([:admin, @service]) do |f| -%>
     <%= render :partial => "form", :object => f %>
-    <h2>Assigned services</h2>
-    <table class="zebra-striped" id="services_list">
+    <h2>Options</h2>
+    <table class="zebra-striped" id="options_list">
         <thead>
             <tr>
                 <td class="yellow header headerSortDown">Name</td>
-                <td class="blue header">Setup fee</td>
-                <td class="blue header">Periodic fee</td>
-                <td class="blue header">Charge mode</td>
-                <td class="blue header">&#x2718;</td>
+                <td class="blue header">Title</td>
+                <td class="blue header">Required</td>
+                <td class="blue header">Overridable</td>
+                <td class="blue header">Value type</td>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <td colspan="3"><a href="#" id="new_service">Add new</a></td>
+                <td colspan="3"><a href="#" id="new_option">Add new</a></td>
             </tr>
         </tfoot>
-        <tbody id="services">
-            <%= services_fields(f) %>
-            <%= service_row_template(f) %>
+        <tbody id="options">
+          <%= options_fields(f) %>
+          <%= option_row_template(f) %>
         </tbody>
     </table>
     <div class="actions">
-        <%= f.submit "Update plan", :class => "btn primary" %>
-        <%= link_to("Delete plan", admin_plan_path(@plan),
+        <%= f.submit "Update service", :class => "btn primary" %>
+        <%= link_to("Delete service", admin_service_path(@service),
                     "data-method" => "delete",
                     "data-confirm" => "Are you sure to delete this record?") %>
     </div>

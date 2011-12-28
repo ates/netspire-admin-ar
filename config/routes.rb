@@ -29,6 +29,7 @@ NetspireAdmin::Application.routes.draw do
 
     scope("/billing") do
       resources :plans
+      resources :services
       resources :billing_cycles, :path => "cycles"
       resources :billing_periods, :path => "periods"
     end

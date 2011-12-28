@@ -1,0 +1,32 @@
+<% content_for :sidebar do %>
+  <h5><%= link_to 'Create service', new_admin_service_path %></h5>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+      $("table#serviceTable").tablesorter({ sortList: [[0,0]] });
+  });
+</script>
+
+<table class="zebra-striped" id="serviceTable">
+  <thead>
+    <tr>
+      <th class="yellow header headerSortDown">Name</th>
+      <th class="blue header">Title</th>
+      <th class="blue header">Active</th>
+      <th class="blue header">Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= link_to service.name, edit_admin_service_path(service) %></td>
+        <td><%= service.title %></td>
+        <td><%= tick_or_cross(service.active) %></td>
+        <td><%= localized_time(service.created_at) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+          
+<%= will_paginate(@plans) %>

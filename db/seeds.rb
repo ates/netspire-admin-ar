@@ -76,6 +76,57 @@ Permission.create!(:subject_class => 'Plan',
                    :action => 'create',
                    :name => 'Create plan')
 
+# Services
+Permission.create!(:subject_class => 'Service',
+                   :action => 'create',
+                   :name => 'Create service')
+Permission.create!(:subject_class => 'Service',
+                   :action => 'index',
+                   :name => 'List of the services')
+Permission.create!(:subject_class => 'Service',
+                   :action => 'edit',
+                   :name => 'View service')
+Permission.create!(:subject_class => 'Service',
+                   :action => 'destroy',
+                   :name => 'Delete service')
+Permission.create!(:subject_class => 'Service',
+                   :action => 'update',
+                   :name => 'Edit service')
+
+# BillingCycles
+Permission.create!(:subject_class => 'BillingCycle',
+                   :action => 'index',
+                   :name => 'List of the billing cycles')
+Permission.create!(:subject_class => 'BillingCycle',
+                   :action => 'edit',
+                   :name => 'View billing cycle')
+Permission.create!(:subject_class => 'BillingCycle',
+                   :action => 'destroy',
+                   :name => 'Delete billing cycle')
+Permission.create!(:subject_class => 'BillingCycle',
+                   :action => 'update',
+                   :name => 'Edit billing cycle')
+Permission.create!(:subject_class => 'BillingCycle',
+                   :action => 'create',
+                   :name => 'Create billing cycle')
+
+# BillingPeriods
+Permission.create!(:subject_class => 'BillingPeriod',
+                   :action => 'index',
+                   :name => 'List of the billing periods')
+Permission.create!(:subject_class => 'BillingPeriod',
+                   :action => 'edit',
+                   :name => 'View billing periods')
+Permission.create!(:subject_class => 'BillingPeriod',
+                   :action => 'destroy',
+                   :name => 'Delete billing period')
+Permission.create!(:subject_class => 'BillingPeriod',
+                   :action => 'update',
+                   :name => 'Edit billing period')
+Permission.create!(:subject_class => 'BillingPeriod',
+                   :action => 'create',
+                   :name => 'Create billing period')
+
 # Assign permission to admin account
 Permission.all.each do |p|
   admin.admin_permissions.create!(:permission => p)
