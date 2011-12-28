@@ -1,0 +1,27 @@
+<h1>Editing assigned service</h1>
+<%= form_for(@assigned_service, :url => admin_assigned_service_path(@assigned_service), :html => { :method => :put }) do |f| -%>
+  <%= f.error_messages %>
+  <h2>Options</h2>
+  <table id="options_list">
+    <thead class="alt">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody id="options">
+      <%= f.fields_for(:properties) do |fields| -%>
+        <tr>
+          <td>
+            <%= fields.hidden_field :option_id %>
+            <%= fields.object.option.label %>
+          </td>
+          <td><%= fields.text_field :value, :class => :big %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end -%>

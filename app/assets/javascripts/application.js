@@ -10,6 +10,9 @@
 //= require jquery-ui
 
 $(document).ready(function() {
+  // Init template elements
+  $.templates.init();
+
   // Dropdown menu
   $("body").bind("click", function (e) {
     $('a.menu').parent("li").removeClass("open");

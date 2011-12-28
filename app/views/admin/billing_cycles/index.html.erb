@@ -1,0 +1,37 @@
+<% content_for :sidebar do %>
+    <h5><%= link_to 'Create billing cycle', new_admin_billing_cycle_path %></h5>
+<% end %>
+
+<h1>Listing billing cycles</h1>
+
+<script>
+    $(function() {
+        $("table#billingCyclesTable").tablesorter({ sortList: [[0,0]] });
+    });
+</script>
+
+<table class="zebra-striped" id="billingCyclesTable">
+    <thead>
+        <tr>
+            <th class="yellow header headerSortDown">Name</th>
+            <th class="blue header">Type</th>
+            <th class="green header">Lenght</th>
+            <th class="green header">Unit</th>
+            <th class="green header">Smooth</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @billing_cycles.each do |billing_cycle| %>
+            <tr>
+                <td><%= link_to(billing_cycle.name, edit_admin_billing_cycle_path(billing_cycle)) %></td>
+
+                <td><%= billing_cycle.cycle_type %></td>
+                <td><%= billing_cycle.length %></td>
+                <td><%= billing_cycle.unit %></td>
+                <td><%= tick_or_cross(billing_cycle.smooth) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= will_paginate(@billing_cycles) %>

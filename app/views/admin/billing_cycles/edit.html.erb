@@ -1,0 +1,14 @@
+<% content_for :sidebar do %>
+    <h5><%= link_to 'Create billing cycle', new_admin_billing_cycle_path %></h5>
+    <h5><%= link_to 'List of billing cycles', admin_billing_cycles_path %></h5>
+<% end %>
+
+<h1>Editing billing cycle</h1>
+
+<%= form_for([:admin, @billing_cycle]) do |f| -%>
+  <%= render :partial => "form", :object => f %>
+  <div class="actions">
+      <%= f.submit "Update billing cycle", :class => "btn primary" %>
+      <%= link_to("Delete billing cycle", admin_billing_cycle_path(@billing_cycle), "data-method" => "delete", "data-confirm" => "Are you sure to delete this record?") %>
+  </div>
+<% end -%>

@@ -6,7 +6,7 @@ class Admin::BillingPeriodsController < AdminController
   end
 
   def new
-    @billing_periods = BillingPeriod.new
+    @billing_period = BillingPeriod.new
   end
 
   def show

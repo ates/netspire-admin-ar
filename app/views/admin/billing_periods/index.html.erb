@@ -1,0 +1,35 @@
+<% content_for :sidebar do %>
+    <h5><%= link_to 'Create billing period', new_admin_billing_period_path %></h5>
+<% end %>
+
+<h1>Listing billing periods</h1>
+
+<script>
+    $(function() {
+        $("table#billingPeriodsTable").tablesorter({ sortList: [[0,0]] });
+    });
+</script>
+
+<table class="zebra-striped" id="billingPeriodsTable">
+    <thead>
+        <tr>
+            <th class="yellow header headerSortDown">Name</th>
+            <th class="blue header">Start</th>
+            <th class="green header">Expires</th>
+            <th class="green header">Expired</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @billing_periods.each do |billing_period| %>
+            <tr>
+                <td><%= link_to(billing_period.name, edit_admin_billing_period_path(billing_period)) %></td>
+
+                <td><%= localized_time(billing_period.start_at, :long) %></td>
+                <td><%= localized_time(billing_period.expires_at, :long) %></td>
+                <td><%= tick_or_cross(billing_period.expired?) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= will_paginate(@billing_periods) %>

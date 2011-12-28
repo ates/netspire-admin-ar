@@ -1,0 +1,75 @@
+<% content_for :html_head do %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Expand/collapse AssignedService row
+            $("#services tr.expandable > th").live("click", function(e) {
+                var next = $(this).parent().next();
+                next.toggle();
+                if (next.is(":visible")) {
+                    $(this).css("cursor", "n-resize");
+                } else {
+                    $(this).css("cursor", "s-resize");
+                };
+            });
+
+            // Appends new AssignedService row
+            $('#new_service').click(function() {
+                var tbody = $("#services");
+                var row = $.templates.get("services");
+                row.appendTo(tbody).show();
+                return false;
+            });
+
+            // Remove existing Service row
+            $('#services a.remove').live("click", function() {
+                var row = $(this).closest('tr');
+                row.next().remove();
+                row.remove();
+                return false;
+            });
+
+            // Set correct indexes of form fields
+            $("form").submit(function() {
+                var rows = $("#services tr");
+                $.each(rows, function() {
+                    var index = rows.index($(this));
+                        $.each($(this).find("input, select"), function() {
+                            var name = $(this).attr("name")
+                            $(this).attr("name", name.replace("NEW_ROW", index));
+                        });
+                    });
+            });
+        });
+    </script>
+<% end %>
+
+<h1>Editing plan</h1>
+
+<%= form_for([:admin, @plan]) do |f| -%>
+    <%= render :partial => "form", :object => f %>
+    <h2>Assigned services</h2>
+    <table class="zebra-striped" id="services_list">
+        <thead>
+            <tr>
+                <td class="yellow header headerSortDown">Name</td>
+                <td class="blue header">Setup fee</td>
+                <td class="blue header">Periodic fee</td>
+                <td class="blue header">Charge mode</td>
+                <td class="blue header">&#x2718;</td>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="3"><a href="#" id="new_service">Add new</a></td>
+            </tr>
+        </tfoot>
+        <tbody id="services">
+            <%= services_fields(f) %>
+            <%= service_row_template(f) %>
+        </tbody>
+    </table>
+    <div class="actions">
+        <%= f.submit "Update plan", :class => "btn primary" %>
+        <%= link_to("Delete plan", admin_plan_path(@plan), "data-method" => "delete", "data-confirm" => "Are you sure to delete this record?") %>
+    </div>
+<% end -%>

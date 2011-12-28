@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+    <h5><%= link_to 'List of plans', admin_plans_path %></h5>
+<% end %>
+
+<h1>New plan</h1>
+  
+<%= form_for([:admin, @plan]) do |f| -%>
+    <%= render :partial => "form", :object => f %>
+    <div class="actions">
+        <%= f.submit "Create", :class => "btn primary" %>
+    </div>
+<% end -%>

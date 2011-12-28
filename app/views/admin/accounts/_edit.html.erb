@@ -1,6 +1,64 @@
+<% content_for :html_head do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // Appends new ServiceLink row
+      $('#new_service_link').click(function() {
+        var tbody = $("#service_links");
+        var row = $.templates.get("service_links");
+        row.appendTo(tbody).show();
+        return false;
+      });
+
+      // Remove ServiceLink row
+      $('#service_links a.remove').live("click", function() {
+        var row = $(this).closest('tr');
+        // May have following row with fields (when validation fails)
+        if (row.children("th").size() > 0) {
+          row.next().remove();
+        };
+        row.remove();
+        return false;
+      });
+
+       $("form").submit(function() {
+        var rows = $("#service_links tr");
+        $.each(rows, function() {
+          var index = rows.index($(this));
+          $.each($(this).find("input, select"), function() {
+            var name = $(this).attr("name")
+            $(this).attr("name", name.replace("NEW_ROW", index));
+          });
+        });
+      });
+    });
+  </script>
+<% end %>
+
 <%= form_for([:admin, @account]) do |f| -%>
   <%= render "shared/error_messages", :target => @account %>
   <%= render :partial => "edit_form", :object => f %>
+  <h2>Service links</h2>
+  <table class="zebra-striped" id="service_links_list">
+    <thead>
+      <tr>
+        <td>Service</td>
+        <td>Plan</td>
+        <td>Scheduled</td>
+        <td>Expiring</td>
+        <td>&#x2718;</td>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="3"><a href="#" id="new_service_link">Add new</a></td>
+      </tr>
+    </tfoot>
+    <tbody id="service_links">
+        <%= service_links_fields(f) %>
+        <%= service_link_row_template(f) %>
+    </tbody>
+  </table>
+
   <div class="actions">
     <%= f.submit 'Update account', :class => "btn primary" %>
     <%= link_to("Delete account", admin_account_path(@account),

@@ -1,0 +1,22 @@
+<div class="clearfix">
+    <%= form.label :billing_cycle_id %>
+    <div class="input">
+        <%= form.collection_select :billing_cycle_id, BillingCycle.all, :id, :name, :include_blank => true %>
+    </div>
+</div>
+
+<div class="clearfix">
+    <%= form.label :start_at %>
+    <div class="input">
+        <%= form.datetime_select :start_at, :include_blank => true, :start_year => Time.now.year %>
+        <span class="help-inline">Leave this field blank for current time.</span>
+    </div>
+</div>
+
+<div class="cleafix">
+    <%= form.label :expires_at %>
+    <div class="input">
+        <%= form.datetime_select :expires_at, :include_blank => true, :start_year => Time.now.year %>
+        <span class="help-inline">Leave this field blank to calculate actual period expiration according to billing cycle rules.</span>
+    </div>
+</div>

@@ -14,6 +14,11 @@ class AssignedService < ActiveRecord::Base
 
   accepts_nested_attributes_for :properties
 
+
+  # FIXME: Deletion broken for accepts_nested_attributes_for when using default scope
+  #default_scope includes(:plan, :service)
+  scope :available, where("plans.legacy = ?", false).joins("JOIN plans ON plans.id = plan_id")
+
   validates :plan_id, :presence => true
   validates :service_id, :presence => true,
                          :uniqueness => { :scope => :plan_id }

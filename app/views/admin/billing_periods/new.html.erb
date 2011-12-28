@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+    <h5><%= link_to 'List of billing periods', admin_billing_periods_path %></h5>
+<% end %>
+
+<h1>New billing period</h1>
+
+<%= form_for([:admin, @billing_period]) do |f| -%>
+    <%= render :partial => "form", :object => f %>
+    <div class="actions">
+        <%= f.submit "Create billing period", :class => "btn primary" %>
+    </div>
+<% end -%>
